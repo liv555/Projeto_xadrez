@@ -151,7 +151,7 @@ public class ChessGUI extends JFrame {
         pcAsBlack.setSelected(false);
 
         JMenu depthMenu = new JMenu("Profundidade IA");
-        depthSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 4, 1));
+    depthSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 2, 1));
         depthSpinner.setToolTipText("Profundidade efetiva da IA (heurística não-minimax)");
         depthMenu.add(depthSpinner);
 
@@ -184,7 +184,7 @@ public class ChessGUI extends JFrame {
         panel.add(new JLabel("Prof. IA:"));
         // >>> Fix da ambiguidade: força o construtor (int,int,int,int)
         int curDepth = ((Integer) depthSpinner.getValue()).intValue();
-        JSpinner sp = new JSpinner(new SpinnerNumberModel(curDepth, 1, 4, 1));
+    JSpinner sp = new JSpinner(new SpinnerNumberModel(curDepth, 1, 2, 1));
         sp.addChangeListener(e -> depthSpinner.setValue(sp.getValue()));
         panel.add(sp);
 

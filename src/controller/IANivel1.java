@@ -64,3 +64,47 @@ class JogoXadrez {
     }
 }
 
+
+// IA NIVEL 2
+class IANivel2 {
+    // Valores das peças
+    private static final int VALOR_PEAO = 100;
+    private static final int VALOR_CAVALO = 320;
+    private static final int VALOR_BISPO = 330;
+    private static final int VALOR_TORRE = 500;
+    private static final int VALOR_DAMA = 900;
+    private static final int VALOR_REI = 20000;
+
+    public int avaliarTabuleiro(Tabuleiro tabuleiro) {
+        int pontuacao = 0;
+        char[][] posicoes = tabuleiro.getPosicoes();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                char peca = posicoes[i][j];
+                if (peca != ' ') {
+                    int valor = valorPeca(peca);
+                    // Peças brancas aumentam pontuação, pretas diminuem
+                    if (Character.isUpperCase(peca)) {
+                        pontuacao += valor;
+                    } else {
+                        pontuacao -= valor;
+                    }
+                }
+            }
+        }
+        return pontuacao;
+    }
+
+    private int valorPeca(char peca) {
+        switch (Character.toLowerCase(peca)) {
+            case 'p': return VALOR_PEAO;
+            case 'c': return VALOR_CAVALO;
+            case 'b': return VALOR_BISPO;
+            case 't': return VALOR_TORRE;
+            case 'd': return VALOR_DAMA;
+            case 'r': return VALOR_REI;
+            default: return 0;
+        }
+    }
+}
+
